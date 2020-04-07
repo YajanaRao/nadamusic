@@ -1,0 +1,63 @@
+{% extends "layout.jinja2" %}
+
+{% if request.user is none %}
+<p class="pull-right">
+    <a href="{{ request.route_url('login') }}">Login</a>
+</p>
+{% else %}
+<p class="pull-right">
+    {{request.user.name}} <a href="{{request.route_url('logout')}}">Logout</a>
+</p>
+{% endif %}
+
+{% block content %}
+{% if loaded %}
+
+<div class="container d-flex justify-content-center align-items-center" style="flex-direction: column">
+    {% if paginator.items %}
+
+
+    <h2>Blog entries</h2>
+
+    <ul>
+        {% for entry in paginator.items %}
+        <li>
+            <a href="{{ request.route_url('blog', id=entry.id, slug=entry.slug) }}">
+                {{ entry.title }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    {{ paginator.pager() |safe }}
+
+    {% else %}
+
+    <p>No blog entries found.</p>
+
+    {% endif %}
+   
+    <div class="row">
+        <div class="col">
+            <div class="bg-white" data-toggle="modal" data-target="#connectionModal"
+                style="height: 70px; width: 70px; border-radius: 35px; display: flex; justify-content: center; align-items: center; cursor: pointer;">
+                <img src="https://cdn2.iconfinder.com/data/icons/energy-52/64/Energy-09-512.png" class="img-circle"
+                    height="40px" width="40px" alt="" srcset="">
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="connectionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document" id="connection_modal_content">
+        </div>
+    </div>
+</div>
+</div>
+
+{% else %}
+<div style="height: 85vh; justify-content: center; align-items: center; display: flex;">
+    <div class="loader">Loading</div>
+</div>
+{% endif %}
+{% endblock content %}

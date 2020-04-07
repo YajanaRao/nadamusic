@@ -1,0 +1,32 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+
+<div class="starter-template">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-4">
+                <img class="logo img-responsive" src="{{request.static_url('nadamusic:static/pyramid.png') }}"
+                    alt="Nada music player">
+            </div>
+            <div class="col-md-8">
+                <div class="content">
+                    <h1><span class="font-semi-bold">Nada</span> <span class="smaller">Music player</span></h1>
+                    <p class="lead">Welcome to <span class="font-normal">{{project}}</span>, a&nbsp; music player
+                        focused on
+                        &nbsp;<br><span class="font-normal">Free music</span>.</p>
+
+                    {% if request.authenticated_userid %}
+                    Welcome <strong>{{request.authenticated_userid}}</strong> ::
+                    <a href="{{request.route_url('auth',action='out')}}">Sign Out</a>
+                    {% else %}
+                    <a href="{{ request.route_url('login') }}" class="btn btn-warning">Get started</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
