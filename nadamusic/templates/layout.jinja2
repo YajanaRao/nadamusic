@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Nada music player">
+  <meta name="description" content="Nada music">
   <meta name="keywords" content="Google drive music player">
   <meta name="author" content="Yajana">
   <meta name="url" content="{{request.route_url('index')}}">
@@ -46,7 +46,7 @@
     </div>
   </header>
   <!-- style="height: 88vh; display: flex; justify-content: center; align-items: center; flex-direction: column;" -->
-  <div class="d-flex justify-content-center align-items-center" style="height: 88vh;flex-direction: column;">
+  <div class="d-flex justify-content-center align-items-center" style="min-height: 88vh;flex-direction: column;">
     {% block content %}
     <p>No content</p>
     {% endblock content %}
