@@ -3,7 +3,7 @@ import os
 from setuptools import setup, find_packages
 
 here = os.path.abspath(os.path.dirname(__file__))
-with open(os.path.join(here, 'README.txt')) as f:
+with open(os.path.join(here, 'README.md')) as f:
     README = f.read()
 with open(os.path.join(here, 'CHANGES.txt')) as f:
     CHANGES = f.read()
@@ -25,6 +25,7 @@ requires = [
     'paginate==0.5.6', # pagination helpers
     'paginate_sqlalchemy==0.3.0',
     'passlib',
+    'requests',
 ]
 
 tests_require = [
@@ -34,9 +35,9 @@ tests_require = [
 ]
 
 setup(
-    name='pyramid_blogr',
+    name='nadamusic',
     version='0.0',
-    description='pyramid_blogr',
+    description='nadamusic',
     long_description=README + '\n\n' + CHANGES,
     classifiers=[
         'Programming Language :: Python',
@@ -57,10 +58,10 @@ setup(
     install_requires=requires,
     entry_points={
         'paste.app_factory': [
-            'main = pyramid_blogr:main',
+            'main = nadamusic:main',
         ],
         'console_scripts': [
-            'initialize_pyramid_blogr_db=pyramid_blogr.scripts.initialize_db:main',
+            'initialize_nadamusic_db=nadamusic.scripts.initialize_db:main',
         ],
     },
 )

@@ -1,0 +1,22 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+<div class="starter-template">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-4">
+        <img class="logo img-responsive" src="{{request.static_url('nadamusic:static/pyramid.png') }}"
+          alt="Nada music player">
+      </div>
+      <div class="col-md-8">
+        <div class="content">
+          <h1><span class="font-semi-bold">Nada</span> <span class="smaller">Music player</span></h1>
+
+          <p class="lead"><span class="font-semi-bold">404</span> Page Not Found</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

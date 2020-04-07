@@ -19,3 +19,9 @@ Data.fs*
 .DS_Store
 coverage
 test
+
+# react
+node_modules/
+nadamusic.sqlite
+.vscode/
+package-lock.json

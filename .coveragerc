@@ -1,3 +1,0 @@
-[run]
-source = pyramid_blogr
-omit = pyramid_blogr/test*
