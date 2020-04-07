@@ -39,3 +39,7 @@
 - Run your project.
 
   env/bin/pserve development.ini
+
+- Production
+
+  env/bin/pserve producti.ini\?http_port=80
