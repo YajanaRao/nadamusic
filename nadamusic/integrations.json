@@ -1,6 +1,0 @@
-{
-    "client_id":"14154834146-37ire5qs7l6477j81igpdo2rnj6nm4s2.apps.googleusercontent.com",
-    "client_secret": "7aIkwMVGyoij7JYb5XwsN4jS",
-    "scope": "https://www.googleapis.com/auth/drive.metadata.readonly https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid https://www.googleapis.com/auth/drive.metadata.readonly",
-    "redirect_uri": "http://localhost:6543/callback"
-}
