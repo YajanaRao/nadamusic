@@ -32,32 +32,30 @@
 </head>
 
 <body class="bg-light">
-  <header class="navbar d-flex align-items-center pl-3" style="height: 6vh;">
-    <a href="/" style="text-decoration: none;" class="h6 mb-0 text-secondary">
+  <header class="navbar d-flex align-items-center pl-3 appbar">
+    <a href="/" class="h6 mb-0 text-secondary no-links">
      <strong class="text-success">NADA</strong> Music</a>
 
     <div class="navbar navbar-left">
       {% if request.authenticated_userid %}
-      Welcome &nbsp; <strong>{{request.authenticated_userid}}</strong>
-      <!-- <a href="{{request.route_url('auth',action='out')}}">Sign Out</a> -->
+        Welcome &nbsp; <strong>{{request.authenticated_userid}}</strong>
       {% else %}
       <a href="{{request.route_url('login')}}">Login</a>
       {% endif %}
     </div>
   </header>
-  <!-- style="height: 88vh; display: flex; justify-content: center; align-items: center; flex-direction: column;" -->
-  <div class="d-flex justify-content-center align-items-center" style="min-height: 88vh;flex-direction: column;">
+  <div class="d-flex justify-content-center align-items-center content-container">
     {% block content %}
     <p>No content</p>
     {% endblock content %}
   </div>
-  <footer class="d-flex align-items-center jutify-content-around" style="height: 6vh;">
+  <footer class="d-flex align-items-center jutify-content-around footer">
     <!-- <div class="row"> -->
     <div class="copyright col text-align-start">
       Copyright &copy; Yajana N Rao's Project
     </div>
-    <div class="col" style="text-align:end;">
-      <i class="glyphicon glyphicon-cog icon-muted"></i><a href="https://github.com/Pylons/pyramid">Github
+    <div class="col text-right">
+      <i class="glyphicon glyphicon-cog icon-muted"></i><a href="https://github.com/YajanaRao/nadamusic">Github
         Project</a></li>
     </div>
     <!-- </div> -->

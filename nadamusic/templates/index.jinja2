@@ -16,14 +16,9 @@
             <span class="font-semi-bold">NADA</span>
             <span class="smaller">Music</span>
           </h1>
-          <p class="lead">
-            Welcome to
-            <span class="font-normal">NADA Music</span> &nbsp;<br /><span
-              class="font-normal"
-              >A Next generation</span
-            >
-            music player
-          </p>
+          <h1 class="lead">
+            A Next generation music player
+          </h1>
 
           {% if request.authenticated_userid %} Welcome
           <strong>{{ request.authenticated_userid }}</strong> ::
@@ -50,7 +45,7 @@
           height="100"
           class="text-center mb-4"
         />
-        <h4>Bring All Your Songs Together and Prepare It</h4>
+        <h2 class="h4">Bring All Your Songs Together and Prepare It</h2>
         <p>
           A free music streaming program that pulls content from all possible
           sources all over the internet..
@@ -65,7 +60,7 @@
           height="140"
           class="text-center"
         />
-        <h4>Interactive Discovery and Segmentation</h4>
+        <h2 class="h4">Interactive Discovery and Segmentation</h2>
         <p>
           Nada music let's you query songs in unique ways. We allow for
           interactive, ad-hoc discovery of insights, anomalies, and trends.
@@ -83,15 +78,11 @@
           src="{{ request.static_url('nadamusic:static/mobile-app.jpeg') }}"
           alt="serenity"
           height="400"
-          class="text-center"
-          style="
-            border-radius: 0.25rem;
-            box-shadow: 3px 3px 15px 11px #0022d49e;
-          "
+          class="text-center mobile-img"
         />
       </div>
       <div class="col p-5 d-flex justify-content-center flex-column">
-        <h4 class="mb-3">A offline mobile music player</h4>
+        <h2 class="h4" class="mb-3">A offline mobile music player</h2>
         <p>
           A offline first music player for android
         </p>

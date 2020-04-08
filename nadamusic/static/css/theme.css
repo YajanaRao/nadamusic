@@ -1,9 +1,9 @@
-@import url(//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
+@import url(//fonts.googleapis.com/css?family=Open + Sans:300, 400, 600, 700);
 body {
   margin: 0;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
-  background-color: #cfd0d1!important;
+  background-color: #cfd0d1 !important;
   color: #212529;
 }
 h1,
@@ -19,10 +19,9 @@ p {
   font-weight: 300;
 }
 
-
 /* custom class */
 .bg-background {
-    background-color: #cfd0d1!important;
+  background-color: #cfd0d1 !important;
 }
 
 .font-normal {
@@ -38,7 +37,7 @@ p {
   display: flex;
   height: 88vh;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   background: #bc2131;
   color: #ffffff;
   width: 100%;
@@ -147,11 +146,35 @@ p {
 
 /* custom css */
 .icon {
-    transition: transform .2s; /* Animation */
+  transition: transform 0.2s; /* Animation */
+}
+
+.appbar {
+  height: 6vh;
+}
+
+.no-links {
+  text-decoration: none;
+}
+
+.content-container {
+  min-height: 88vh;
+  flex-direction: column;
+}
+
+.mobile-img {
+  border-radius: 0.25rem;
+  box-shadow: 3px 3px 15px 11px #0022d49e;
+}
+
+.footer {
+  height: 6vh;
 }
 
 .icon:hover {
-    transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transform: scale(
+    1.1
+  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 /* bootstrap theme overrite */
 
@@ -163,11 +186,13 @@ p {
 /* button */
 .btn {
   font-weight: 500;
-  font-size: .825rem;
-  padding: .325rem .75rem;
+  font-size: 0.825rem;
+  padding: 0.325rem 0.75rem;
   line-height: 1.5;
   border-radius: 2px;
-  transition: opacity  0.15s ease-in-out, color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: opacity 0.15s ease-in-out, color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
 }
 
 .form-control {
