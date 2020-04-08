@@ -32,9 +32,8 @@
 
 <body class="bg-light">
   <header class="navbar d-flex align-items-center pl-3" style="height: 6vh;">
-    <a href="/" style="text-decoration: none;" class="h6 mb-0">
-      <img class="logo img-responsive" height="20px" width="20px"
-        src="{{request.static_url('nadamusic:static/pyramid.png') }}" alt="Nada music player"> Home</a>
+    <a href="/" style="text-decoration: none;" class="h6 mb-0 text-secondary">
+     <strong class="text-success">NADA</strong> Music</a>
 
     <div class="navbar navbar-left">
       {% if request.authenticated_userid %}
@@ -83,7 +82,8 @@
 
   <!-- custom js -->
   <script src="{{request.static_url('nadamusic:static/js/index.js')}}"></script>
-  <script src="{{request.static_url('nadamusic:static/js/modal.js')}}"></script>
+ 
+  {% block script %}{% endblock %}
 
 </body>
 

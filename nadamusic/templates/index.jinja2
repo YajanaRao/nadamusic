@@ -3,7 +3,7 @@
 <div class="starter-template">
   <div class="container">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4 d-flex justify-content-center">
         <img
           class="logo img-responsive"
           src="{{ request.static_url('nadamusic:static/pyramid.png') }}"
@@ -13,12 +13,12 @@
       <div class="col-md-8">
         <div class="content">
           <h1>
-            <span class="font-semi-bold">Nada</span>
+            <span class="font-semi-bold">NADA</span>
             <span class="smaller">Music</span>
           </h1>
           <p class="lead">
             Welcome to
-            <span class="font-normal">Nada Music</span> &nbsp;<br /><span
+            <span class="font-normal">NADA Music</span> &nbsp;<br /><span
               class="font-normal"
               >A Next generation</span
             >
@@ -38,27 +38,67 @@
     </div>
   </div>
 </div>
-<div class="bg-secondary container-fluid text-light">
+<div class="bg-warning container-fluid text-light">
   <div class="container">
     <div class="row p-5">
-      <div class="col p-5">
-        <!-- <img
+      <div
+        class="col p-5 d-flex flex-column justify-content-center align-items-center"
+      >
+        <img
           src="https://cdn2.iconfinder.com/data/icons/line-design-database-set-2/21/database-import-512.png"
           height="100"
-          class="text-center"
-        /> -->
+          class="text-center mb-4"
+        />
         <h4>Bring All Your Songs Together and Prepare It</h4>
         <p>
           A free music streaming program that pulls content from all possible
           sources all over the internet..
         </p>
       </div>
-      <div class="col p-5">
+      <div
+        class="col p-5 d-flex flex-column justify-content-center align-items-center"
+      >
+        <img
+          src="https://cdn1.iconfinder.com/data/icons/ecommerce-21/32/29_product_search_searching_internet_address_bar_find-512.png"
+          height="140"
+          class="text-center"
+        />
         <h4>Interactive Discovery and Segmentation</h4>
         <p>
-          Nada music let's you query your data in unique ways. We allow for
+          Nada music let's you query songs in unique ways. We allow for
           interactive, ad-hoc discovery of insights, anomalies, and trends.
         </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-primary container-fluid text-light">
+  <div class="container">
+    <div class="row p-5">
+      <div class="col p-5">
+        <img
+          src="{{ request.static_url('nadamusic:static/mobile-app.jpeg') }}"
+          height="400"
+          class="text-center"
+          style="
+            border-radius: 0.25rem;
+            box-shadow: 3px 3px 15px 11px #0022d49e;
+          "
+        />
+      </div>
+      <div class="col p-5 d-flex justify-content-center flex-column">
+        <h4 class="mb-3">A offline mobile music player</h4>
+        <p>
+          A offline first music player for android
+        </p>
+        <div>
+          <a
+            href="https://github.com/YajanaRao/Serenity"
+            class="btn btn-secondary"
+            >Download</a
+          >
+        </div>
       </div>
     </div>
   </div>
