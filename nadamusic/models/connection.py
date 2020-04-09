@@ -1,19 +1,21 @@
-import datetime #<- will be used to set default dates on models
+import datetime  # <- will be used to set default dates on models
 
-from nadamusic.models.meta import Base  #<- we need to import our sqlalchemy metadata from which model classes will inherit
+# <- we need to import our sqlalchemy metadata from which model classes will inherit
+from nadamusic.models.meta import Base
 from sqlalchemy import (
     Column,
     Text,
     Integer,
-    Unicode, 
-    DateTime    #<- will provide Unicode field
-  #<- time abstraction field
+    Unicode,
+    DateTime  # <- will provide Unicode field
+    # <- time abstraction field
 )
+
 
 class Connection(Base):
     __tablename__ = 'connection'
     uid = Column(Integer, primary_key=True)
-    user_id = Column(Integer, unique=False, nullable=False)
+    user_id = Column(Integer, nullable=False)
     title = Column(Unicode(255), unique=True, nullable=False)
     token = Column(Unicode(255), unique=True, nullable=False)
     refresh_token = Column(Unicode(255), unique=True, nullable=False)
