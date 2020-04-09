@@ -13,6 +13,7 @@ from sqlalchemy import (
 class Connection(Base):
     __tablename__ = 'connection'
     uid = Column(Integer, primary_key=True)
+    user_id = Column(Integer, unique=False, nullable=False)
     title = Column(Unicode(255), unique=True, nullable=False)
     token = Column(Unicode(255), unique=True, nullable=False)
     refresh_token = Column(Unicode(255), unique=True, nullable=False)

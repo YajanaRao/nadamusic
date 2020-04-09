@@ -16,6 +16,10 @@ class ConnectionService(object):
         return query.get(_id)
 
     @classmethod
+    def by_user_id(cls, user_id, request):
+        return request.dbsession.query(Connection).filter(Connection.user_id == user_id).all()
+
+    @classmethod
     def get_paginator(cls, request, page=1):
         query = request.dbsession.query(Connection)
         query = query.order_by(sa.desc(Connection.created))

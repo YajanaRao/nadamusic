@@ -16,13 +16,15 @@ def index_page(request):
     return {'paginator': paginator}
 
 
-@view_config(route_name='auth', match_param='action=out', renderer='string')
+@view_config(route_name='logout')
 def sign_out(request):
-    username = request.POST.get('username')
-    user = UserService.by_name(username, request=request)
-    if user:
-        headers = forget(request, user.name)
-        return HTTPFound(location=request.route_url('index'), headers=headers)
+    uid = request.authenticated_userid
+    print(uid)
+    user = request.dbsession.query(User).get(uid)
+    print(user)
+    # if user:
+    headers = forget(request)
+    return HTTPFound(location=request.route_url('index'), headers=headers)
 
 @view_config(route_name='login',
              renderer='nadamusic:templates/login.jinja2')
