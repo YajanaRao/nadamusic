@@ -7,7 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#deede5">
   <meta name="keywords" content="Google drive music player, google drive player, cloud music, web player">
-  <meta name="description" content="NADA music is a robust, cloud-based music platform that allows you to store, prepare, and explore your songs">
+  <meta name="description"
+    content="NADA music is a robust, cloud-based music platform that allows you to store, prepare, and explore your songs">
   <meta name="author" content="Yajana">
   <meta name="url" content="{{request.route_url('index')}}">
 
@@ -34,11 +35,11 @@
 <body class="bg-light">
   <header class="navbar d-flex align-items-center pl-3 appbar">
     <a href="/" class="h6 mb-0 text-secondary no-links">
-     <strong class="text-success">NADA</strong> Music</a>
+      <strong class="text-success">NADA</strong> Music</a>
 
     <div class="navbar navbar-left">
       {% if request.authenticated_userid %}
-        Welcome &nbsp; <strong>{{request.authenticated_userid}}</strong>
+      <a href="{{request.route_url('logout')}}">Logout</a>
       {% else %}
       <a href="{{request.route_url('login')}}">Login</a>
       {% endif %}
@@ -81,7 +82,7 @@
 
   <!-- custom js -->
   <script src="{{request.static_url('nadamusic:static/js/index.js')}}"></script>
- 
+
   {% block script %}{% endblock %}
 
 </body>

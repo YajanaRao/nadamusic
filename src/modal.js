@@ -104,7 +104,7 @@ const ModalBody = ({ isLoading, setLoading, contentType, setContentType, addSong
         )
     } else if (contentType.type === "specs") {
         return (
-            <ul className="list-group d-flex justify-content-center h-100" style={{ overflowY: 'auto' }}>
+            <ul className="list-group d-flex h-100" style={{ overflowY: 'auto' }}>
                 {specs.map(spec => <Spec key={spec.id} spec={spec} addSong={addSong} removeSong={removeSong} />)}
             </ul>
         )

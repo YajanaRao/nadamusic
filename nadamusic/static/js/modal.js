@@ -161,7 +161,7 @@ var ModalBody = function ModalBody(_ref3) {
     } else if (contentType.type === "specs") {
         return React.createElement(
             'ul',
-            { className: 'list-group d-flex justify-content-center h-100', style: { overflowY: 'auto' } },
+            { className: 'list-group d-flex h-100', style: { overflowY: 'auto' } },
             specs.map(function (spec) {
                 return React.createElement(Spec, { key: spec.id, spec: spec, addSong: addSong, removeSong: removeSong });
             })
