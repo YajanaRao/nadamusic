@@ -19,7 +19,9 @@
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 
   <!-- Custom styles for this scaffold -->
@@ -33,34 +35,46 @@
 </head>
 
 <body class="bg-light">
-  <header class="navbar d-flex align-items-center pl-3 appbar">
-    <a href="/" class="h6 mb-0 text-secondary no-links">
-      <strong class="text-success">NADA</strong> Music</a>
-
-    <div class="navbar navbar-left">
+  <header class="mdc-top-app-bar mdc-top-app-bar--dense bg-light text-dark">
+    <div class="mdc-top-app-bar__row">
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+        <button class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon--unbounded">graphic_eq</button>
+        <a href="/" class="h5 mb-0 text-secondary no-links">
+          <strong class="text-success">NADA</strong> Music</a> </section>
       {% if request.authenticated_userid %}
-      <a href="{{request.route_url('logout')}}">Logout</a>
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+        <button class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded"
+          aria-label="Notifications">notifications</button>
+        <a href="{{request.route_url('logout')}}"
+          class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded"
+          aria-label="Account">account_circle</a>
+      </section>
       {% else %}
-      <a href="{{request.route_url('login')}}">Login</a>
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+
+        <a href="{{request.route_url('login')}}" class="mdc-button mdc-button--raised bg-dark btn"><span
+            class="mdc-button__ripple"></span>Login</a>
+      </section>
+
       {% endif %}
     </div>
   </header>
-  <div class="d-flex align-items-center content-container">
+  <!-- <header class="navbar d-flex align-items-center pl-3 appbar">
+    <a href="/" class="h5 mb-0 text-secondary no-links">
+      <strong class="text-success">NADA</strong> Music</a>
+
+    <div class="navbar navbar-left">
+     
+      <a href="{{request.route_url('logout')}}">Logout</a>
+     
+    </div>
+  </header> -->
+  <div class="content-container">
     {% block content %}
     <p>No content</p>
     {% endblock content %}
   </div>
-  <footer class="d-flex align-items-center jutify-content-around footer">
-    <!-- <div class="row"> -->
-    <div class="copyright col text-align-start">
-      Copyright &copy; Yajana N Rao's Project
-    </div>
-    <div class="col text-right">
-      <i class="glyphicon glyphicon-cog icon-muted"></i><a href="https://github.com/YajanaRao/nadamusic">Github
-        Project</a></li>
-    </div>
-    <!-- </div> -->
-  </footer>
+
 
   <!-- Bootstrap core JavaScript
     ================================================== -->
