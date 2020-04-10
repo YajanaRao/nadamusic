@@ -2,7 +2,7 @@
 
 const Connection = ({ title, deleteConnection, getSpec }) => {
     return (
-        <li className="list-group-item bg-light d-flex justify-content-between align-items-center m-1" style={{ cursor: 'pointer' }}>
+        <li className="list-group-item bg-light d-flex justify-content-between align-items-center m-1 connection-item">
             <div onClick={getSpec}>{title}</div>
             <img src="/static/icons/svg/trash.svg" height="12px" width="12px" className="icon"
                 alt="delete" onClick={deleteConnection} />
@@ -24,7 +24,7 @@ const Spec = ({ spec, addSong, removeSong }) => {
     }
     if (selected) {
         return (
-            <li className="list-group-item d-flex justify-content-between align-items-center m-1 active" style={{ cursor: 'pointer' }} onClick={undo}>
+            <li className="list-group-item d-flex justify-content-between align-items-center m-1 active song-item" onClick={undo}>
                 <div>{spec.title}</div>
                 {/* <img src="/static/open-iconic/svg/trash.svg" height="12px" width="12px" className="icon"
                 alt="delete" onClick={deleteConnection} /> */}
@@ -32,7 +32,7 @@ const Spec = ({ spec, addSong, removeSong }) => {
         )
     }
     return (
-        <li className="list-group-item bg-light d-flex justify-content-between align-items-center m-1" style={{ cursor: 'pointer' }} onClick={selectSong}>
+        <li className="list-group-item bg-light d-flex justify-content-between align-items-center m-1 song-item" onClick={selectSong}>
             <div>{spec.title}</div>
             {/* <img src="/static/open-iconic/svg/trash.svg" height="12px" width="12px" className="icon"
                 alt="delete" onClick={deleteConnection} /> */}
@@ -137,15 +137,17 @@ const ModalContainer = () => {
     }
 
     function submitSongs(){
+        setLoading(true)
         console.log(songs);
         fetch(`${url}/api/song/create`, {
             method: 'POST',
             body: JSON.stringify({
                 "songs": songs
             })
-        }).then(response = response.json())
-        .then((data) => {
+        })
+        .then(() => {
             console.log(data);
+            $('#connectionModal').modal('hide');
         })
     }
 

@@ -5,6 +5,7 @@ body {
   font-weight: 300;
   background-color: #cfd0d1 !important;
   color: #212529;
+  --mdc-theme-secondary: #56c28c;
 }
 h1,
 h2,
@@ -176,6 +177,49 @@ p {
     1.1
   ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
+
+.connection-item {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.song-item {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.connection-item:hover {
+  font-weight: 700;
+}
+
+.song-item:hover {
+  font-weight: 700;
+}
+
+.list-song {
+  border-radius: 0.1rem;
+  color: #000;
+  margin-bottom: 0.3rem;
+}
+
+.list-song:hover {
+  box-shadow: 2px 2px 4px 0 rgba(0,0,0,.25);
+}
+
+.app-fab--absolute {
+  position: fixed !important;
+  bottom: 3rem;
+  right: 1.5rem;
+}
+
+@media(min-width: 991.98px) {
+   .app-fab--absolute {
+    position: fixed !important;
+    top: 4rem;
+    left: 1rem;
+  }
+}
+
 /* bootstrap theme overrite */
 
 /* list group item */

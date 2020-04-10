@@ -11,17 +11,22 @@
 {% endif %}
 
 {% block content %}
+
+
+<link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+
 {% if loaded %}
 
-<div class="container d-flex justify-content-center align-items-center" style="flex-direction: column">
+<div class="container d-flex align-items-center" style="flex-direction: column">
     {% if paginator.items %}
 
-
-    <h2>Blog entries</h2>
-
-    <ul>
+    <ul class="w-100 p-0">
         {% for entry in paginator.items %}
-        <li>
+        <li class="bg-white d-block p-3 list-song">
             <a href="{{ request.route_url('blog', id=entry.id, slug=entry.slug) }}">
                 {{ entry.title }}
             </a>
@@ -33,10 +38,6 @@
 
     {% else %}
 
-    <p>Create a new entry here.</p>
-
-    {% endif %}
-   
     <div class="row">
         <div class="col">
             <div class="bg-white" data-toggle="modal" data-target="#connectionModal"
@@ -46,6 +47,14 @@
             </div>
         </div>
     </div>
+
+    {% endif %}
+    <button class="mdc-fab app-fab--absolute" aria-label="Add" data-toggle="modal" data-target="#connectionModal">
+        <div class="mdc-fab__ripple"></div>
+        <span class="mdc-fab__icon material-icons">add</span>
+    </button>
+
+
     <!-- Modal -->
     <div class="modal fade" id="connectionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true">
@@ -63,5 +72,5 @@
 {% endblock content %}
 
 {% block script %}
- <script src="{{request.static_url('nadamusic:static/js/modal.js')}}"></script>
- {% endblock %}
+<script src="{{request.static_url('nadamusic:static/js/modal.js')}}"></script>
+{% endblock %}

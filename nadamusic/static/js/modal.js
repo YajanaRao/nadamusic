@@ -8,15 +8,15 @@ var Connection = function Connection(_ref) {
         getSpec = _ref.getSpec;
 
     return React.createElement(
-        'li',
-        { className: 'list-group-item bg-light d-flex justify-content-between align-items-center m-1', style: { cursor: 'pointer' } },
+        "li",
+        { className: "list-group-item bg-light d-flex justify-content-between align-items-center m-1 connection-item" },
         React.createElement(
-            'div',
+            "div",
             { onClick: getSpec },
             title
         ),
-        React.createElement('img', { src: '/static/icons/svg/trash.svg', height: '12px', width: '12px', className: 'icon',
-            alt: 'delete', onClick: deleteConnection })
+        React.createElement("img", { src: "/static/icons/svg/trash.svg", height: "12px", width: "12px", className: "icon",
+            alt: "delete", onClick: deleteConnection })
     );
 };
 
@@ -41,20 +41,20 @@ var Spec = function Spec(_ref2) {
     }
     if (selected) {
         return React.createElement(
-            'li',
-            { className: 'list-group-item d-flex justify-content-between align-items-center m-1 active', style: { cursor: 'pointer' }, onClick: undo },
+            "li",
+            { className: "list-group-item d-flex justify-content-between align-items-center m-1 active song-item", onClick: undo },
             React.createElement(
-                'div',
+                "div",
                 null,
                 spec.title
             )
         );
     }
     return React.createElement(
-        'li',
-        { className: 'list-group-item bg-light d-flex justify-content-between align-items-center m-1', style: { cursor: 'pointer' }, onClick: selectSong },
+        "li",
+        { className: "list-group-item bg-light d-flex justify-content-between align-items-center m-1 song-item", onClick: selectSong },
         React.createElement(
-            'div',
+            "div",
             null,
             spec.title
         )
@@ -86,7 +86,7 @@ var ModalBody = function ModalBody(_ref3) {
     }, []);
 
     function listConnections() {
-        fetch(url + '/api/connection/list').then(function (response) {
+        fetch(url + "/api/connection/list").then(function (response) {
             return response.json();
         }).then(function (data) {
             setConnections(data.connections);
@@ -96,7 +96,7 @@ var ModalBody = function ModalBody(_ref3) {
 
     function _deleteConnection(id) {
         setLoading(true);
-        fetch(url + '/api/connection/delete', {
+        fetch(url + "/api/connection/delete", {
             method: 'POST',
             body: JSON.stringify({
                 "id": id
@@ -108,7 +108,7 @@ var ModalBody = function ModalBody(_ref3) {
 
     function _getSpec(connection) {
         setLoading(true);
-        fetch(url + '/api/connection/spec', {
+        fetch(url + "/api/connection/spec", {
             method: 'POST',
             body: JSON.stringify({
                 "id": connection.id
@@ -125,29 +125,29 @@ var ModalBody = function ModalBody(_ref3) {
 
     if (isLoading) {
         return React.createElement(
-            'div',
-            { className: 'loader' },
-            'Loading'
+            "div",
+            { className: "loader" },
+            "Loading"
         );
     } else if (contentType.type === "connection") {
         return React.createElement(
-            'div',
-            { className: 'd-flex flex-column' },
+            "div",
+            { className: "d-flex flex-column" },
             React.createElement(
-                'div',
-                { className: 'float-right d-flex justify-content-end' },
+                "div",
+                { className: "float-right d-flex justify-content-end" },
                 React.createElement(
-                    'a',
-                    { href: 'howdy', type: 'button', className: 'btn btn-success' },
-                    'NEW CONNECTION'
+                    "a",
+                    { href: "howdy", type: "button", className: "btn btn-success" },
+                    "NEW CONNECTION"
                 )
             ),
             React.createElement(
-                'div',
-                { className: 'mt-3' },
+                "div",
+                { className: "mt-3" },
                 React.createElement(
-                    'ul',
-                    { className: 'list-group d-flex' },
+                    "ul",
+                    { className: "list-group d-flex" },
                     connections.map(function (connection) {
                         return React.createElement(Connection, { key: connection.id, title: connection.title, getSpec: function getSpec() {
                                 return _getSpec(connection);
@@ -160,8 +160,8 @@ var ModalBody = function ModalBody(_ref3) {
         );
     } else if (contentType.type === "specs") {
         return React.createElement(
-            'ul',
-            { className: 'list-group d-flex h-100', style: { overflowY: 'auto' } },
+            "ul",
+            { className: "list-group d-flex h-100", style: { overflowY: 'auto' } },
             specs.map(function (spec) {
                 return React.createElement(Spec, { key: spec.id, spec: spec, addSong: addSong, removeSong: removeSong });
             })
@@ -205,86 +205,88 @@ var ModalContainer = function ModalContainer() {
     }
 
     function submitSongs() {
+        setLoading(true);
         console.log(songs);
-        fetch(url + '/api/song/create', {
+        fetch(url + "/api/song/create", {
             method: 'POST',
             body: JSON.stringify({
                 "songs": songs
             })
-        }).then(response = response.json()).then(function (data) {
+        }).then(function () {
             console.log(data);
+            $('#connectionModal').modal('hide');
         });
     }
 
     return React.createElement(
-        'div',
-        { className: 'modal-content' },
+        "div",
+        { className: "modal-content" },
         React.createElement(
-            'div',
-            { className: 'modal-header' },
+            "div",
+            { className: "modal-header" },
             React.createElement(
-                'h6',
-                { className: 'modal-title', id: 'exampleModalLongTitle' },
+                "h6",
+                { className: "modal-title", id: "exampleModalLongTitle" },
                 React.createElement(
-                    'nav',
-                    { 'aria-label': 'breadcrumb' },
+                    "nav",
+                    { "aria-label": "breadcrumb" },
                     React.createElement(
-                        'ol',
-                        { className: 'breadcrumb bg-white mb-0 p-0' },
+                        "ol",
+                        { className: "breadcrumb bg-white mb-0 p-0" },
                         React.createElement(
-                            'li',
-                            { className: 'breadcrumb-item' },
+                            "li",
+                            { className: "breadcrumb-item" },
                             React.createElement(
-                                'a',
+                                "a",
                                 null,
-                                'Integrations'
+                                "Integrations"
                             )
                         ),
                         React.createElement(
-                            'li',
-                            { className: 'breadcrumb-item' },
+                            "li",
+                            { className: "breadcrumb-item" },
                             React.createElement(
-                                'a',
+                                "a",
                                 { style: { cursor: 'pointer' }, onClick: function onClick() {
                                         return setContentType({ type: "connection" });
                                     } },
-                                'Google Drive'
+                                "Google Drive"
                             )
                         ),
                         contentType.type === 'specs' ? React.createElement(
-                            'li',
-                            { className: 'breadcrumb-item active', 'aria-current': 'page' },
+                            "li",
+                            { className: "breadcrumb-item active", "aria-current": "page" },
                             contentType.name
                         ) : false
                     )
                 )
             ),
             React.createElement(
-                'button',
-                { type: 'button', className: 'close', 'data-dismiss': 'modal', 'aria-label': 'Close' },
+                "button",
+                { type: "button", className: "close", "data-dismiss": "modal", "aria-label": "Close" },
                 React.createElement(
-                    'span',
-                    { 'aria-hidden': 'true' },
-                    '\xD7'
+                    "span",
+                    { "aria-hidden": "true" },
+                    "\xD7"
                 )
             )
         ),
         React.createElement(
-            'div',
-            { className: 'modal-body' },
+            "div",
+            { className: "modal-body" },
             React.createElement(ModalBody, { isLoading: isLoading, setLoading: setLoading, contentType: contentType, setContentType: setContentType, addSong: addSong, removeSong: removeSong })
         ),
         React.createElement(
-            'div',
-            { className: 'modal-footer' },
+            "div",
+            { className: "modal-footer" },
             React.createElement(
-                'button',
-                { type: 'button', className: 'btn btn-light', 'data-dismiss': 'modal' },
-                'CLOSE'
+                "button",
+                { type: "button", className: "btn btn-light", "data-dismiss": "modal" },
+                "CLOSE"
             ),
             React.createElement(
-                'button',
-                { type: 'button', className: 'btn btn-success', disabled: isLoading, onClick: submitSongs },
+                "button",
+                { type: "button", className: "btn btn-success", disabled: isLoading, onClick: submitSongs },
                 contentType.type === 'specs' ? "SUBMIT" : "NEXT"
             )
         )
