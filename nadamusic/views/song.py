@@ -32,6 +32,17 @@ def song_create(request):
     return {'status': 500}
 
 
+@view_config(route_name='song_action', match_param='action=delete', renderer='json', permission='create')
+def song_delete(request):
+    if request.method == 'POST' and request.authenticated_userid:
+        song_id = request.json_body['id']
+        song = SongService.by_id(song_id, request)
+        if song_id:
+            request.dbsession.delete(song)
+            return { 'status': 202 }
+        else:
+            return { 'status': 204 }
+
 @view_config(route_name='song_action', match_param='action=edit',
              renderer='json',
              permission='create')

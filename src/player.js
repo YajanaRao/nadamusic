@@ -10,9 +10,6 @@ const PlayerContainer = ({ url, title }) => {
     let instance = new Howl({
       src: [
         url,
-        // "https://drive.google.com/file/d/1ZVapsTWLOPcHFMeJd3SZM76gynYCs8SW/view?usp=drivesdk",
-        // "https://drive.google.com/file/d/1ZVapsTWLOPcHFMeJd3SZM76gynYCs8SW/preview?usp=drivesdk",
-        // "https://kannadasongsdownload.info/2017-Kannadamasti.Info/Chakravarthy/Ondu%20Malebillu%20(Kannadamasti.info).mp3",
       ],
       html5: true,
       buffer: true,
@@ -48,7 +45,7 @@ const PlayerContainer = ({ url, title }) => {
       <button className="mdc-fab mdc-fab--extended" onClick={togglePlay}>
         <div className="mdc-fab__ripple"></div>
         <span className="material-icons mdc-fab__icon">pause</span>
-        <span className="mdc-fab__label">{title}</span>
+        <span className="mdc-fab__label" style={{ fontSize: '12px' }}>{title}</span>
       </button>
     );
   }
@@ -56,7 +53,7 @@ const PlayerContainer = ({ url, title }) => {
     <button className="mdc-fab mdc-fab--extended" onClick={togglePlay}>
       <div className="mdc-fab__ripple"></div>
       <span className="material-icons mdc-fab__icon">play_arrow</span>
-      <span className="mdc-fab__label">{title}</span>
+      <span className="mdc-fab__label" style={{ fontSize: '12px' }}>{title}</span>
     </button>
   );
 };

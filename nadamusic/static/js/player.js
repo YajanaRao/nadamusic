@@ -67,7 +67,7 @@ var PlayerContainer = function PlayerContainer(_ref) {
       ),
       React.createElement(
         "span",
-        { className: "mdc-fab__label" },
+        { className: "mdc-fab__label", style: { fontSize: '12px' } },
         title
       )
     );
@@ -83,7 +83,7 @@ var PlayerContainer = function PlayerContainer(_ref) {
     ),
     React.createElement(
       "span",
-      { className: "mdc-fab__label" },
+      { className: "mdc-fab__label", style: { fontSize: '12px' } },
       title
     )
   );

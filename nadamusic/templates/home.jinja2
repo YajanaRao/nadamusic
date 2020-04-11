@@ -8,27 +8,21 @@
 </p>
 {% endif %} {% block content %} {% if loaded %}
 
+<!-- alert -->
+<div id="alert"></div>
+
+
 <!-- Modal -->
-<div
-  class="modal fade"
-  id="connectionModal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="exampleModalLongTitle"
-  aria-hidden="true"
->
-  <div
-    class="modal-dialog modal-dialog-centered modal-lg"
-    role="document"
-    id="connection_modal_content"
-  ></div>
+<div class="modal fade" id="connectionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document" id="connection_modal_content"></div>
 </div>
 
 <!-- snackbar -->
 <div class="mdc-snackbar">
   <div class="mdc-snackbar__surface">
     <div class="mdc-snackbar__label" role="status" aria-live="polite">
-      Can't send photo. Retry in 5 seconds.
+      Something went wrong.
     </div>
     <div class="mdc-snackbar__actions">
       <button type="button" class="mdc-button mdc-snackbar__action">
@@ -41,19 +35,16 @@
 
 <!-- main content -->
 <div class="content-container">
-  <div
-    class="container d-flex align-items-center"
-    style="flex-direction: column;"
-  >
+  <div class="container d-flex align-items-center" style="flex-direction: column;">
     {% if paginator.items %}
 
     <ul class="w-100 p-0 mdc-list">
       {% for entry in paginator.items %}
-      <li
-        class="bg-white d-block p-3 list-song mdc-list-item"
-        onclick="play('{{ entry.title | safe }}', '{{ entry.source | safe }}')"
-      >
-        {{ entry.title }}
+      <li class="bg-white p-3 list-song mdc-list-item">
+        <span style="margin-right: auto;margin-left: 0em;"
+          onclick="play('{{ entry.title | safe }}', '{{ entry.source | safe }}')">{{ entry.title }}</span>
+        <span onclick="deleteAlert('{{ entry.id | safe }}', '{{ entry.title | safe }}')" class="mdc-list-item__meta material-icons icon ml-0"
+          aria-hidden="true">delete_outlined</span>
       </li>
       {% endfor %}
     </ul>
@@ -65,11 +56,7 @@
     <div class="row" style="margin-top: 45vh;">
       <div class="col d-flex flex-column align-items-center">
         <h5>Start adding songs to your library</h5>
-        <div
-          class="bg-white"
-          data-toggle="modal"
-          data-target="#connectionModal"
-          style="
+        <div class="bg-white" data-toggle="modal" data-target="#connectionModal" style="
             height: 70px;
             width: 70px;
             border-radius: 35px;
@@ -77,45 +64,33 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-          "
-        >
-          <img
-            src="https://cdn2.iconfinder.com/data/icons/energy-52/64/Energy-09-512.png"
-            class="img-circle"
-            height="40px"
-            width="40px"
-            alt="integrations"
-            srcset=""
-          />
+          ">
+          <img src="https://cdn2.iconfinder.com/data/icons/energy-52/64/Energy-09-512.png" class="img-circle"
+            height="40px" width="40px" alt="integrations" srcset="" />
         </div>
       </div>
     </div>
 
     {% endif %}
-    <button
-      class="mdc-fab app-fab--absolute"
-      aria-label="Add"
-      data-toggle="modal"
-      data-target="#connectionModal"
-    >
+    <button class="mdc-fab app-fab--absolute" aria-label="Add" data-toggle="modal" data-target="#connectionModal">
       <div class="mdc-fab__ripple"></div>
       <span class="mdc-fab__icon material-icons">add</span>
     </button>
   </div>
 </div>
 {% else %}
-<div
-  style="
+<div style="
     height: 85vh;
     justify-content: center;
     align-items: center;
     display: flex;
-  "
->
+  ">
   <div class="loader">Loading</div>
 </div>
 {% endif %} {% endblock content %} {% block script %}
 <script src="{{ request.static_url('nadamusic:static/js/modal.js') }}"></script>
+<script src="{{ request.static_url('nadamusic:static/js/dialog.js') }}"></script>
+
 <script src="{{
     request.static_url('nadamusic:static/js/player.js')
   }}"></script>

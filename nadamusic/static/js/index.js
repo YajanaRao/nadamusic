@@ -3,6 +3,11 @@ if (params.has("connections")) {
   $("#connectionModal").modal("show");
 }
 
+
+
+
+
+
 // var snackbar = new mdc.snackbar.MDCSnackbar(
 //   document.querySelector(".mdc-snackbar")
 // );

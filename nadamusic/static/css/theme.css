@@ -5,7 +5,8 @@ body {
   font-weight: 300;
   background-color: #cfd0d1 !important;
   color: #212529;
-  --mdc-theme-secondary: #56c28c;
+  --mdc-theme-primary: #56c28c;
+  --mdc-typography-button-font-weight: 
 }
 h1,
 h2,
@@ -148,6 +149,7 @@ p {
 /* custom css */
 .icon {
   transition: transform 0.2s; /* Animation */
+  font-size: 16px !important;
 }
 
 .no-links {
