@@ -22,7 +22,7 @@ requires = [
     'zope.sqlalchemy',
     'wtforms==2.2.1',  # form library
     'webhelpers2==2.0',  # various web building related helpers
-    'paginate==0.5.6', # pagination helpers
+    'paginate==0.5.6',  # pagination helpers
     'paginate_sqlalchemy==0.3.0',
     'passlib',
     'requests',

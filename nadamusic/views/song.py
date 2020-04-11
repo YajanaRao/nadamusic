@@ -15,7 +15,6 @@ def song_view(request):
 
 # add songs
 
-    
 
 @view_config(route_name='song_action', match_param='action=create',
              renderer='json',
@@ -25,11 +24,12 @@ def song_create(request):
         songs = request.json_body['songs']
         print(songs)
         for song in songs:
-            request.dbsession.add(Song(title=song['title'], source=song['alternateLink']))
+            request.dbsession.add(
+                Song(title=song['title'], source=song['webContentLink']))
         # source = request.json_body['source']
         # request.dbsession.add(Song(title=title, source=source))
-        return { 'status': 201 }
-    return { 'status': 500 }
+        return {'status': 201}
+    return {'status': 500}
 
 
 @view_config(route_name='song_action', match_param='action=edit',
@@ -47,4 +47,4 @@ def song_update(request):
     #     return HTTPFound(
     #         location=request.route_url('blog', id=entry.id,slug=entry.slug))
     # return {'form': form, 'action': request.matchdict.get('action')}
-    return { 'status': 'work in progress'}
+    return {'status': 'work in progress'}

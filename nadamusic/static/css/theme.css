@@ -150,10 +150,6 @@ p {
   transition: transform 0.2s; /* Animation */
 }
 
-.appbar {
-  height: 6vh;
-}
-
 .no-links {
   text-decoration: none;
 }
@@ -172,15 +168,13 @@ p {
   box-shadow: 3px 3px 15px 11px #0022d49e;
 }
 
-.footer {
-  padding-top: 1rem;
-  margin-bottom: 5rem;
-}
-
 .icon:hover {
   transform: scale(
     1.1
   ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+.a-hover-none:hover {
+  text-decoration: none !important;
 }
 
 .connection-item {
@@ -210,21 +204,28 @@ p {
 }
 
 .list-song:hover {
-  box-shadow: 2px 2px 4px 0 rgba(0,0,0,.25);
+  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
 .app-fab--absolute {
   position: fixed !important;
-  bottom: 3rem;
+  bottom: 2rem;
   right: 1.5rem;
 }
 
-@media(min-width: 991.98px) {
-   .app-fab--absolute {
+@media (min-width: 991.98px) {
+  .app-fab--absolute {
     position: fixed !important;
     top: 4rem;
     left: 1rem;
   }
+}
+
+#playerBar {
+  position: fixed;
+  bottom: 2rem;
+  left: 1.5rem;
+  max-width: 70vw;
 }
 
 /* bootstrap theme overrite */
