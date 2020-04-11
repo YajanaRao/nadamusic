@@ -19,6 +19,7 @@ class SongService(object):
     def get_paginator(cls, request, page=1):
         query = request.dbsession.query(Song)
         query = query.order_by(sa.desc(Song.created))
+        print(query)
         query_params = request.GET.mixed()
 
         def url_maker(link_page):

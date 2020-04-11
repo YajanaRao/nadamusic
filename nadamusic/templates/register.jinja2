@@ -1,35 +1,40 @@
-{% extends "nadamusic:templates/layout.jinja2" %}
+{% extends "nadamusic:templates/layout.jinja2" %} {% block content %}
+<div class="content-container">
+  <div class="d-flex align-items-center justify-content-center h-100">
+    <div class="card p-5">
+      <h1 class="mb-4">Register</h1>
 
-{% block content %}
-<div class="card p-5">
-    <h1 class="mb-4">Register</h1>
-
-    <form action="{{request.route_url('register')}}" method="post" class="form">
-
+      <form
+        action="{{ request.route_url('register') }}"
+        method="post"
+        class="form"
+      >
         {% for error in form.username.errors %}
         <div class="error">{{ error }}</div>
         {% endfor %}
 
         <div class="form-group">
-            <label for="title">{{form.username.label}}</label>
-            {{form.username(class_='form-control bg-light')}}
+          <label for="title">{{ form.username.label }}</label>
+          {{form.username(class_='form-control bg-light')}}
         </div>
 
         {% for error in form.password.errors %}
-        <div class="error">{{error}}</div>
+        <div class="error">{{ error }}</div>
         {% endfor %}
 
         <div class="form-group">
-            <label for="body">{{form.password.label}}</label>
-            {{form.password(class_='form-control bg-light')}}
+          <label for="body">{{ form.password.label }}</label>
+          {{form.password(class_='form-control bg-light')}}
         </div>
         <div class="form-group">
-            <label></label>
-            <button type="submit" class="btn btn-success btn-block">Submit</button>
+          <label></label>
+          <button type="submit" class="btn btn-success btn-block">
+            Submit
+          </button>
         </div>
-
-
-    </form>
-    <p><a href="{{request.route_url('home')}}">Go Back</a></p>
+      </form>
+      <p><a href="{{ request.route_url('home') }}">Go Back</a></p>
+    </div>
+  </div>
 </div>
 {% endblock %}

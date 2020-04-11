@@ -1,156 +1,17 @@
-@import url(//fonts.googleapis.com/css?family=Open + Sans:300, 400, 600, 700);
 body {
-  margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 300;
-  background-color: #cfd0d1 !important;
-  color: #212529;
+  --mdc-theme-primary: #56c28c;
+  --mdc-typography-button-font-weight: ;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 300;
-}
-p {
-  font-weight: 300;
-}
+/* custom css */
 
 /* custom class */
 .bg-background {
   background-color: #cfd0d1 !important;
 }
 
-.font-normal {
-  font-weight: 400;
-}
-.font-semi-bold {
-  font-weight: 600;
-}
-.font-bold {
-  font-weight: 700;
-}
-.starter-template {
-  display: flex;
-  height: 88vh;
-  justify-content: center;
-  align-items: center;
-  background: #bc2131;
-  color: #ffffff;
-  width: 100%;
-}
-.starter-template .content {
-  margin-left: 10px;
-}
-.starter-template .content h1 {
-  margin-top: 10px;
-  font-size: 60px;
-}
-.starter-template .content h1 .smaller {
-  font-size: 40px;
-  color: #f2b7bd;
-}
-.starter-template .content .lead {
-  font-size: 25px;
-  color: #f2b7bd;
-}
-.starter-template .content .lead .font-normal {
-  color: #ffffff;
-}
-.starter-template .links {
-  float: right;
-  right: 0;
-  margin-top: 125px;
-}
-.starter-template .links ul {
-  display: block;
-  padding: 0;
-  margin: 0;
-}
-.starter-template .links ul li {
-  list-style: none;
-  display: inline;
-  margin: 0 10px;
-}
-.starter-template .links ul li:first-child {
-  margin-left: 0;
-}
-.starter-template .links ul li:last-child {
-  margin-right: 0;
-}
-.starter-template .links ul li.current-version {
-  color: #f2b7bd;
-  font-weight: 400;
-}
-
-@media (max-width: 1199px) {
-  .starter-template .content h1 {
-    font-size: 45px;
-  }
-  .starter-template .content h1 .smaller {
-    font-size: 30px;
-  }
-  .starter-template .content .lead {
-    font-size: 20px;
-  }
-}
-@media (max-width: 991px) {
-  .starter-template {
-    margin-top: 0;
-  }
-  .starter-template .logo {
-    margin: 40px auto;
-  }
-  .starter-template .content {
-    margin-left: 0;
-    text-align: center;
-  }
-  .starter-template .content h1 {
-    margin-bottom: 20px;
-  }
-  .starter-template .links {
-    float: none;
-    text-align: center;
-    margin-top: 60px;
-  }
-  .starter-template .copyright {
-    float: none;
-    text-align: center;
-  }
-}
-@media (max-width: 767px) {
-  .starter-template .content h1 .smaller {
-    font-size: 25px;
-    display: block;
-  }
-  .starter-template .content .lead {
-    font-size: 16px;
-  }
-  .starter-template .links {
-    margin-top: 40px;
-  }
-  .starter-template .links ul li {
-    display: block;
-    margin: 0;
-  }
-  .starter-template .links ul li .icon-muted {
-    display: none;
-  }
-  .starter-template .copyright {
-    margin-top: 20px;
-  }
-}
-
-/* custom css */
 .icon {
   transition: transform 0.2s; /* Animation */
-}
-
-.appbar {
-  height: 6vh;
+  font-size: 16px !important;
 }
 
 .no-links {
@@ -158,8 +19,12 @@ p {
 }
 
 .content-container {
-  min-height: 88vh;
+  top: 6vh;
+  position: fixed;
+  width: 100%;
   flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .mobile-img {
@@ -167,15 +32,66 @@ p {
   box-shadow: 3px 3px 15px 11px #0022d49e;
 }
 
-.footer {
-  height: 6vh;
-}
-
 .icon:hover {
   transform: scale(
     1.1
   ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
+.a-hover-none:hover {
+  text-decoration: none !important;
+}
+
+.connection-item {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.song-item {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.connection-item:hover {
+  font-weight: 700;
+}
+
+.song-item:hover {
+  font-weight: 700;
+}
+
+.list-song {
+  border-radius: 0.1rem;
+  color: #000;
+  margin-bottom: 0.3rem;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.list-song:hover {
+  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.app-fab--absolute {
+  position: fixed !important;
+  bottom: 2rem;
+  right: 1.5rem;
+}
+
+@media (min-width: 991.98px) {
+  .app-fab--absolute {
+    position: fixed !important;
+    top: 4rem;
+    left: 1rem;
+  }
+}
+
+#playerBar {
+  position: fixed;
+  bottom: 2rem;
+  left: 1.5rem;
+  max-width: 70vw;
+}
+
 /* bootstrap theme overrite */
 
 /* list group item */
