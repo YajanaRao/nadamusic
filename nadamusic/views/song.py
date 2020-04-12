@@ -5,15 +5,28 @@ from ..services.song import SongService
 
 
 @view_config(route_name='song',
-             renderer='nadamusic:templates/view_blog.jinja2')
+             renderer='json')
 def song_view(request):
     song_id = request.json_body['id']
     entry = SongService.by_id(song_id, request)
     if not entry:
         return HTTPNotFound()
-    return {'entry': entry}
+    return {'song': entry}
 
 # add songs
+
+
+@view_config(route_name='song_action', match_param='action=list', renderer='json', permission='view')
+def list_song(request):
+    songs = SongService.all(request)
+    songs_json = []
+    for song in songs:
+        songs_json.append({
+            'title': song.title,
+            'source': song.source,
+            'id': song.id
+        })
+    return {'songs': songs_json}
 
 
 @view_config(route_name='song_action', match_param='action=create',
@@ -39,9 +52,10 @@ def song_delete(request):
         song = SongService.by_id(song_id, request)
         if song_id:
             request.dbsession.delete(song)
-            return { 'status': 202 }
+            return {'status': 202}
         else:
-            return { 'status': 204 }
+            return {'status': 204}
+
 
 @view_config(route_name='song_action', match_param='action=edit',
              renderer='json',

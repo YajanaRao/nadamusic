@@ -1,15 +1,16 @@
-import datetime #<- will be used to set default dates on models
-from nadamusic.models.meta import Base  #<- we need to import our sqlalchemy metadata from which model classes will inherit
+import datetime  # <- will be used to set default dates on models
+# <- we need to import our sqlalchemy metadata from which model classes will inherit
+from nadamusic.models.meta import Base
 from sqlalchemy import (
     Column,
     Integer,
-    Unicode,     #<- will provide Unicode field
-    UnicodeText, #<- will provide Unicode text field
+    Unicode,  # <- will provide Unicode field
+    UnicodeText,  # <- will provide Unicode text field
     DateTime,
-    Boolean,    #<- time abstraction field
+    Boolean,  # <- time abstraction field
 )
-from webhelpers2.text import urlify #<- will generate slugs
-from webhelpers2.date import distance_of_time_in_words #<- human friendly dates
+from webhelpers2.text import urlify  # <- will generate slugs
+from webhelpers2.date import distance_of_time_in_words  # <- human friendly dates
 
 
 class Song(Base):
@@ -17,7 +18,8 @@ class Song(Base):
     id = Column(Integer, primary_key=True)
     title = Column(Unicode(255), unique=True, nullable=False)
     is_public = Column(Boolean(name='is_public'), default=True)
-    # is_downloadable = Column(Boolean, default=False)
+    # user_id = Column(Integer, nullable=False)
+    # integration = Column(UnicodeText, default=u'')
     source = Column(UnicodeText, default=u'')
     created = Column(DateTime, default=datetime.datetime.utcnow)
     edited = Column(DateTime, default=datetime.datetime.utcnow)
