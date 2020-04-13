@@ -1,8 +1,6 @@
 "use strict";
 
-const url = document.head
-  .querySelector("meta[name=url]")
-  .content.replace(/^http:/, "https:");
+const url = "https://nadamusic.rocks";
 
 const Connection = ({ title, deleteConnection, getSpec }) => {
   return (
