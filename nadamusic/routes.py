@@ -25,3 +25,6 @@ def includeme(config):
     config.add_route('home', '/home')
     config.add_route('hello', '/howdy')
     config.add_route('callback', '/callback')
+
+    # seo
+    config.add_route('robots.txt', '/robots.txt')
