@@ -1,4 +1,4 @@
-const url = "https://nadamusic.rocks";
+const url = "http://localhost";
 let sound;
 
 const PlayerContainer = ({ url, title }) => {
