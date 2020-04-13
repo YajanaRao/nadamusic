@@ -83,8 +83,6 @@ class AuthViews:
                 print('====================error=========================')
                 print(exp)
         # return response
-        connections = ConnectionService.by_user_id(user_id, self.request)
-        print(connections)
         url = self.request.route_url('home', _query="connections")
         return HTTPFound(location=url)
 
@@ -97,7 +95,6 @@ def connection_spec(request):
         # connection = DBSession.query(Connection).filter_by(uid=connection_id).one()
         connection = ConnectionService.by_id(connection_id, request)
         data = get_google_drive_files(connection.token)
-        print(data)
         if 'error' in data:
             refreshed = fetch_refresh_token(
                 connection.token, connection.refresh_token)

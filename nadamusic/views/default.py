@@ -1,12 +1,28 @@
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 from pyramid.security import remember, forget
+from pyramid.response import Response
+from pyramid.path import AssetResolver
 
 from ..services.user import UserService
 from ..services.blog_record import BlogRecordService
 from ..forms import RegistrationForm, LoginForm
 from ..models.user import User
 
+resolver = AssetResolver()
+
+
+# _robots = /static/robots.txt
+
+_robots = open(resolver.resolve(
+    'nadamusic:static/robots.txt').abspath()).read()
+_robots_response = Response(content_type='text/plain',
+                            body=_robots)
+
+
+@view_config(name='robots.txt')
+def robotstxt_view(context, request):
+    return _robots_response
 
 @view_config(route_name='index',
              renderer='nadamusic:templates/index.jinja2')
@@ -53,8 +69,7 @@ def login(request):
         url=request.route_url('login'),
         next_url=next_url,
         login=login,
-        )
-
+    )
 
 
 @view_config(route_name='register',

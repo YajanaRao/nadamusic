@@ -1,5 +1,9 @@
 "use strict";
 
+const url = document.head
+  .querySelector("meta[name=url]")
+  .content.replace(/^http:/, "https:");
+
 const Connection = ({ title, deleteConnection, getSpec }) => {
   return (
     <li className="list-group-item bg-light d-flex justify-content-between align-items-center m-1 connection-item">
@@ -62,8 +66,6 @@ const ModalBody = ({
 }) => {
   const [connections, setConnections] = React.useState([]);
   const [specs, setSpecs] = React.useState([]);
-
-  const url = document.head.querySelector("meta[name=url]").content;
 
   React.useEffect(() => {
     listConnections();
@@ -153,8 +155,6 @@ const ModalContainer = () => {
     type: "connection",
   });
   const [songs, setSongs] = React.useState([]);
-
-  const url = document.head.querySelector("meta[name=url]").content;
 
   function addSong(song) {
     let prevSongs = songs;
