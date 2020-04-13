@@ -1,4 +1,6 @@
-const url = "http://localhost";
+var url = document.head
+  .querySelector("meta[name=url]")
+  .content.replace(/^http:/, "https:");
 let sound;
 
 const PlayerContainer = ({ url, title }) => {
