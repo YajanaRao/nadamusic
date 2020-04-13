@@ -1,4 +1,4 @@
-const url = document.head.querySelector("meta[name=url]").content;
+const url = "https://nadamusic.rocks";
 let sound;
 
 const PlayerContainer = ({ url, title }) => {
