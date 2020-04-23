@@ -5,7 +5,6 @@ from pyramid.response import Response
 from pyramid.path import AssetResolver
 
 from ..services.user import UserService
-from ..services.blog_record import BlogRecordService
 from ..forms import RegistrationForm, LoginForm
 from ..models.user import User
 
@@ -27,9 +26,7 @@ def robotstxt_view(context, request):
 @view_config(route_name='index',
              renderer='nadamusic:templates/index.jinja2')
 def index_page(request):
-    page = int(request.params.get('page', 1))
-    paginator = BlogRecordService.get_paginator(request, page)
-    return {'paginator': paginator}
+    return {}
 
 
 @view_config(route_name='logout')

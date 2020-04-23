@@ -9,26 +9,27 @@ import json
 import requests
 
 
+def get_by_key(vals, key): return next(x for x in vals if x['key'] == key)
+
+
 class AuthViews:
     def __init__(self, request):
         self.request = request
         resolver = AssetResolver()
         file_path = resolver.resolve('nadamusic:integrations.json').abspath()
         with open(file_path) as f:
-            creds = json.load(f)
-        self.client_id = creds['client_id']
-        self.client_secret = creds['client_secret']
-        self.redirect_uri = creds['redirect_uri']
-        self.scope = creds['scope']
+            self.credentials = json.load(f)
 
     # /howdy
     @view_config(route_name='hello')
     def hello(self):
-
+        integration = self.request.params['integration']
+        auth_config = get_by_key(self.credentials, integration)
         # set auth paramters
-        authorization_url = 'https://accounts.google.com/o/oauth2/v2/auth?client_id='+self.client_id + \
-            '&redirect_uri='+self.redirect_uri + \
-            '&response_type=code&access_type=offline&scope='+self.scope
+        authorization_url = 'https://accounts.google.com/o/oauth2/v2/auth?client_id='+auth_config['client_id'] + \
+            '&redirect_uri='+auth_config['redirect_uri'] + \
+            '&response_type=code&access_type=offline&scope=' + \
+            auth_config['scope']+'&prompt=consent'
         print(authorization_url)
 
         # redirect to auth server
@@ -40,7 +41,10 @@ class AuthViews:
     @view_config(route_name='callback')
     def callback(self):
         user_id = self.request.authenticated_userid
+        integration = self.request.params['integration']
         if user_id:
+            auth_config = get_by_key(self.credentials, integration)
+
             # handle oauth response
             code = self.request.GET.get('code')
             error = self.request.GET.get('error')
@@ -51,10 +55,10 @@ class AuthViews:
                 url = "https://oauth2.googleapis.com/token"
 
                 payload = {'code': code,
-                           'client_id': self.client_id,
-                           'client_secret': self.client_secret,
+                           'client_id': auth_config['client_id'],
+                           'client_secret': auth_config['client_secret'],
                            'grant_type': 'authorization_code',
-                           'redirect_uri': self.redirect_uri}
+                           'redirect_uri': auth_config['redirect_uri']}
 
                 response = requests.post(url, data=payload)
                 creds = response.json()
@@ -76,7 +80,7 @@ class AuthViews:
                     refresh_token = creds['refresh_token']
                     print("creating new connection", token)
                     self.request.dbsession.add(Connection(
-                        user_id=user_id, title=title, token=token, refresh_token=refresh_token))
+                        user_id=user_id, title=title, token=token, refresh_token=refresh_token, integration=integration))
                     # transaction.commit()
 
             except Exception as exp:
@@ -129,14 +133,17 @@ def delete_connection(request):
 # First view, available at /
 @view_config(route_name='list_connection', renderer='json')
 def list_connections(request):
+    integration = request.params['integration']
     user_id = request.authenticated_userid
-    connections = ConnectionService.by_user_id(user_id, request)
     connection_json = []
-    for connection in connections:
-        connection_json.append({
-            'title': connection.title,
-            'id': connection.uid
-        })
+    if user_id and integration:
+        connections = ConnectionService.by_user_id_of_integration(
+            user_id, integration, request)
+        for connection in connections:
+            connection_json.append({
+                'title': connection.title,
+                'id': connection.uid
+            })
     return {'connections': connection_json}
 
 

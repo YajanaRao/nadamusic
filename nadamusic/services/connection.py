@@ -1,5 +1,5 @@
 import sqlalchemy as sa
-from paginate_sqlalchemy import SqlalchemyOrmPage #<- provides pagination
+from paginate_sqlalchemy import SqlalchemyOrmPage  # <- provides pagination
 from ..models.connection import Connection
 
 
@@ -18,6 +18,10 @@ class ConnectionService(object):
     @classmethod
     def by_user_id(cls, user_id, request):
         return request.dbsession.query(Connection).filter(Connection.user_id == user_id).all()
+
+    @classmethod
+    def by_user_id_of_integration(cls, user_id, integration_key, request):
+        return request.dbsession.query(Connection).filter(Connection.user_id == user_id, Connection.integration == integration_key)
 
     @classmethod
     def get_paginator(cls, request, page=1):

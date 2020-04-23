@@ -21,3 +21,4 @@ class Connection(Base):
     refresh_token = Column(Unicode(255), unique=True, nullable=False)
     created = Column(DateTime, default=datetime.datetime.utcnow)
     edited = Column(DateTime, default=datetime.datetime.utcnow)
+    integration = Column(Unicode(255))

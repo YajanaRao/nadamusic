@@ -6,7 +6,6 @@ import zope.sqlalchemy
 # import or define all models here to ensure they are attached to the
 # Base.metadata prior to any initialization routines
 from .user import User
-from .blog_record import BlogRecord
 from .connection import Connection
 from .song import Song
 

@@ -6,6 +6,9 @@ def includeme(config):
                      factory='nadamusic.security.BlogRecordFactory')
     config.add_route('auth', '/sign/{action}')
 
+    # integrations
+    config.add_route('integrations', '/api/integrations')
+
     # auth
     config.add_route('login', '/login')
     config.add_route('logout', '/logout')

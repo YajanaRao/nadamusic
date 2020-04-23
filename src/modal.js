@@ -1,8 +1,7 @@
 "use strict";
 
-var url = document.head
-  .querySelector("meta[name=url]")
-  .content.replace(/^http:/, "https:");
+var url = document.head.querySelector("meta[name=url]").content;
+//   .content.replace(/^http:/, "https:");
 
 const Connection = ({ title, deleteConnection, getSpec }) => {
   return (
@@ -56,29 +55,89 @@ const Spec = ({ spec, addSong, removeSong }) => {
   );
 };
 
-const ModalBody = ({
-  isLoading,
-  setLoading,
-  contentType,
-  setContentType,
-  addSong,
-  removeSong,
-}) => {
-  const [connections, setConnections] = React.useState([]);
+const BreadCrumb = ({ contentType, setContentType }) => {
+  return (
+    <nav aria-label="breadcrumb">
+      <ol className="breadcrumb bg-white mb-0 p-0">
+        <li
+          className={
+            contentType.integration
+              ? "breadcrumb-item"
+              : "breadcrumb-item active"
+          }
+        >
+          <a
+            style={{ cursor: "pointer" }}
+            onClick={() => setContentType({ type: "integrations" })}
+          >
+            Integrations
+          </a>
+        </li>
+        {contentType.integration ? (
+          <li
+            className={
+              contentType.connection
+                ? "breadcrumb-item"
+                : "breadcrumb-item active"
+            }
+          >
+            <a
+              style={{ cursor: "pointer" }}
+              onClick={() => setContentType({ type: "connection" })}
+            >
+              {contentType.integration.name}
+            </a>
+          </li>
+        ) : (
+          false
+        )}
+        {contentType.type === "specs" ? (
+          <li className="breadcrumb-item active" aria-current="page">
+            {contentType.connection}
+          </li>
+        ) : (
+          false
+        )}
+      </ol>
+    </nav>
+  );
+};
+
+const ConnectionsContainer = ({ contentType, setContentType, setLoading }) => {
+  if (contentType.integration.type === "OAUTH") {
+    return (
+      <OAuth
+        setLoading={setLoading}
+        setContentType={setContentType}
+        integration={contentType.integration}
+      />
+    );
+  }
+  return <div>No Connections</div>;
+};
+
+const OAuth = ({ setLoading, setContentType, integration }) => {
   const [specs, setSpecs] = React.useState([]);
 
-  React.useEffect(() => {
-    listConnections();
-  }, []);
+  const [connections, setConnections] = React.useState([]);
 
-  function listConnections() {
-    fetch(`${url}/api/connection/list`)
+  function listConnections(integration) {
+    // setLoading(true);
+    fetch(`${url}/api/connection/list?integration=${integration}`)
       .then((response) => response.json())
       .then((data) => {
         setConnections(data.connections);
-        setLoading(false);
+        // setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        // setLoading(false);
       });
   }
+
+  React.useEffect(() => {
+    listConnections(integration.key);
+  }, []);
 
   function deleteConnection(id) {
     setLoading(true);
@@ -104,34 +163,77 @@ const ModalBody = ({
       .then((data) => {
         console.log(data);
         setSpecs(data.items);
-        setContentType({ type: "specs", name: connection.title });
+        setContentType({
+          type: "specs",
+          connection: connection.title,
+          name: contentType.name,
+        });
         setLoading(false);
       });
   }
 
+  return (
+    <div className="d-flex flex-column">
+      <div className="float-right d-flex justify-content-end">
+        <a
+          href={`howdy?integration=${integration.key}`}
+          type="button"
+          className="btn btn-success"
+        >
+          NEW CONNECTION
+        </a>
+      </div>
+      <div className="mt-3">
+        <ul className="list-group d-flex">
+          {connections.map((connection) => (
+            <Connection
+              key={connection.id}
+              title={connection.title}
+              getSpec={() => getSpec(connection)}
+              deleteConnection={() => deleteConnection(connection.id)}
+            />
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+const ModalBody = ({
+  isLoading,
+  setLoading,
+  contentType,
+  setContentType,
+  addSong,
+  removeSong,
+  integrations,
+}) => {
   if (isLoading) {
     return <div className="loader">Loading</div>;
-  } else if (contentType.type === "connection") {
+  } else if (contentType.type === "integrations") {
     return (
-      <div className="d-flex flex-column">
-        <div className="float-right d-flex justify-content-end">
-          <a href="howdy" type="button" className="btn btn-success">
-            NEW CONNECTION
-          </a>
-        </div>
-        <div className="mt-3">
-          <ul className="list-group d-flex">
-            {connections.map((connection) => (
-              <Connection
-                key={connection.id}
-                title={connection.title}
-                getSpec={() => getSpec(connection)}
-                deleteConnection={() => deleteConnection(connection.id)}
-              />
-            ))}
-          </ul>
-        </div>
+      <div className="row m-1">
+        {integrations.map((integration) => (
+          <div
+            key={integration.key}
+            className="card col m-1 p-1"
+            style={{ cursor: "pointer" }}
+            onClick={() =>
+              setContentType({ type: "connections", integration: integration })
+            }
+          >
+            {integration.name}
+          </div>
+        ))}
       </div>
+    );
+  } else if (contentType.type === "connections") {
+    return (
+      <ConnectionsContainer
+        contentType={contentType}
+        setContentType={setContentType}
+        setLoading={setLoading}
+      />
     );
   } else if (contentType.type === "specs") {
     return (
@@ -150,11 +252,16 @@ const ModalBody = ({
 };
 
 const ModalContainer = () => {
-  const [isLoading, setLoading] = React.useState(true);
+  const [isLoading, setLoading] = React.useState(false);
   const [contentType, setContentType] = React.useState({
-    type: "connection",
+    type: "integrations",
   });
   const [songs, setSongs] = React.useState([]);
+  const [integrations, setIntegrations] = React.useState([]);
+
+  React.useEffect(() => {
+    listIntegrations();
+  }, []);
 
   function addSong(song) {
     let prevSongs = songs;
@@ -167,7 +274,6 @@ const ModalContainer = () => {
     let updatedSongs = prevSongs.filter(function (item) {
       return item.id !== song.id;
     });
-    console.log(updatedSongs);
     setSongs(updatedSongs);
   }
 
@@ -184,32 +290,23 @@ const ModalContainer = () => {
     });
   }
 
+  function listIntegrations() {
+    fetch(`${url}/api/integrations`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setIntegrations(data.integrations);
+      });
+  }
+
   return (
     <div className="modal-content">
       <div className="modal-header">
         <h6 className="modal-title" id="exampleModalLongTitle">
-          <nav aria-label="breadcrumb">
-            <ol className="breadcrumb bg-white mb-0 p-0">
-              <li className="breadcrumb-item">
-                <a>Integrations</a>
-              </li>
-              <li className="breadcrumb-item">
-                <a
-                  style={{ cursor: "pointer" }}
-                  onClick={() => setContentType({ type: "connection" })}
-                >
-                  Google Drive
-                </a>
-              </li>
-              {contentType.type === "specs" ? (
-                <li className="breadcrumb-item active" aria-current="page">
-                  {contentType.name}
-                </li>
-              ) : (
-                false
-              )}
-            </ol>
-          </nav>
+          <BreadCrumb
+            contentType={contentType}
+            setContentType={setContentType}
+          />
         </h6>
         <button
           type="button"
@@ -222,6 +319,7 @@ const ModalContainer = () => {
       </div>
       <div className="modal-body">
         <ModalBody
+          integrations={integrations}
           isLoading={isLoading}
           setLoading={setLoading}
           contentType={contentType}

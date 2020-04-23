@@ -1,6 +1,5 @@
-var url = document.head
-  .querySelector("meta[name=url]")
-  .content.replace(/^http:/, "https:");
+var url = document.head.querySelector("meta[name=url]").textContent;
+//   .content.replace(/^http:/, "https:");
 let sound;
 
 const PlayerContainer = ({ url, title }) => {
@@ -27,6 +26,10 @@ const PlayerContainer = ({ url, title }) => {
         html5: true,
         buffer: true,
         autoplay: false,
+        onend: function () {
+          console.log("Finished!");
+          setPlaying(false);
+        },
       });
       let id = sound.play();
       setPlayer(id);

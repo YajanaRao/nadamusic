@@ -8,13 +8,13 @@
   <meta name="theme-color" content="#deede5" />
   <meta name="keywords" content="Google drive music player, google drive player, cloud music, web player" />
   <meta name="description"
-    content="NADA is a robust, cloud-based music platform that allows you to store, explore, and play your songs" />
+    content="NADHA is a robust, cloud-based music platform that allows you to store, explore, and play your songs" />
   <meta name="author" content="Yajana" />
   <meta name="url" content="{{ request.route_url('index') }}" />
 
   <link rel="shortcut icon" href="{{ request.static_url('nadamusic:static/pyramid-16x16.png') }}" />
 
-  <title>Nada - Next generation Music player</title>
+  <title>Nadha - Next generation Music player</title>
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -28,7 +28,7 @@
 <body class="bg-light">
   <header class="navbar d-flex align-items-center fixed-top">
     <a href="/" class="h4 mb-0 text-secondary no-links">
-      <strong class="text-success">NADA</strong></a>
+      <strong class="text-success">NADHA</strong></a>
 
     <div class="navbar navbar-left">
       {% if request.authenticated_userid %}
@@ -44,20 +44,19 @@
       <div class="row">
         <div class="col-md-4 d-flex justify-content-center">
           <img class="logo img-responsive w-100 h-100" src="{{ request.static_url('nadamusic:static/microphone.jpg') }}"
-            alt="Nada music player" />
+            alt="Nadha music player" />
         </div>
         <div class="col-md-8">
           <div class="content">
             <h1>
-              <span class="font-semi-bold">NADA</span>
+              <span class="font-semi-bold">NADHA</span>
             </h1>
             <h5>
               A Next generation music player
             </h5>
-            <h2 class="lead">NADA is a robust, cloud-based music platform that allows you to store, explore, and play your songs</h2>
-            {% if request.authenticated_userid %} Welcome
-            <strong>{{ request.authenticated_userid }}</strong> ::
-            <a href="{{request.route_url('auth',action='out')}}">Sign Out</a>
+            <h2 class="lead">NADHA is a robust, cloud-based music platform that allows you to store, explore, and play your songs</h2>
+            {% if request.authenticated_userid %}
+            <a class="btn-warning btn" href="{{request.route_url('home')}}">Explore</a>
             {% else %}
             <a href="{{ request.route_url('login') }}" class="btn btn-warning">Get started</a>
             {% endif %}
@@ -84,7 +83,7 @@
             alt="query" height="140" class="text-center" />
           <h2 class="h4">Interactive Discovery and Segmentation</h2>
           <p>
-            Nada music let's you query songs in unique ways. We allow for
+            Nadha music let's you query songs in unique ways. We allow for
             interactive, ad-hoc discovery of insights, anomalies, and trends.
           </p>
         </div>
